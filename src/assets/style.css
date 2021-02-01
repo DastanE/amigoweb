@@ -1,0 +1,384 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  color: #0880AE;
+  text-decoration: none;
+}
+a:hover {
+  color: #064e6b;
+  transition: color 0.3s;
+}
+
+body {
+  min-width: 360px;
+  background-color: #E5E5E5;
+  font-family: "IBMPlexSans";
+  font-size: 16px;
+  color: #000;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+h1, h2, h3 {
+  font-family: "IBMPlexSans-Bold";
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 34px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 26px;
+}
+
+.input-default, .select .select__trigger, input[type=text], input[type=password], input[type=email], input[type=number] {
+  height: 52px;
+  background: #fff;
+  color: #2C2738;
+  padding: 2px 15px;
+  border: 1px solid #DBE2EA;
+  border-radius: 6px;
+  box-shadow: 0px 4px 8px rgba(44, 39, 56, 0.04);
+}
+.input-default:focus, .select .select__trigger:focus, input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=number]:focus {
+  border-width: 2px;
+  border-color: #0880AE;
+  box-shadow: 0px 4px 8px rgba(44, 39, 56, 0.04);
+  outline: 0;
+  transition: all 0.2s;
+}
+.input-default.form-control, .select .form-control.select__trigger, input.form-control[type=text], input.form-control[type=password], input.form-control[type=email], input.form-control[type=number] {
+  width: 100%;
+}
+
+input[type=text]::placeholder, input[type=password]::placeholder, input[type=email]::placeholder, input[type=number]::placeholder {
+  color: #7C9CBF;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.btn {
+  padding: 10px 15px;
+  box-shadow: 0px 2px 4px rgba(44, 39, 56, 0.8);
+  border-width: 0px;
+  border-radius: 6px;
+  outline: 0;
+  cursor: pointer;
+}
+.btn.btn-default {
+  background: #0880ae;
+  color: #EBF4F8;
+}
+.btn.btn-default:hover, .btn.btn-default:focus {
+  background: #0e6c91;
+  transition: background 0.5s;
+}
+.btn.full {
+  width: 100%;
+}
+.btn:disabled {
+  background: #DBE2EA;
+  color: #B1B5BF;
+  box-shadow: 0px 2px 4px rgba(44, 39, 56, 0.08), 0px 4px 8px rgba(44, 39, 56, 0.08);
+  cursor: not-allowed;
+}
+.btn:disabled:hover {
+  background: #DBE2EA;
+  cursor: not-allowed;
+}
+
+.checkbox {
+  position: relative;
+  align-items: center;
+  cursor: pointer;
+}
+.checkbox input {
+  width: 28px;
+  height: 28px;
+  margin-right: 10px;
+  visibility: hidden;
+  vertical-align: middle;
+}
+.checkbox .checkmark {
+  width: 28px;
+  height: 28px;
+  display: inherit;
+  border: 1px solid #DBE2EA;
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px rgba(44, 39, 56, 0.04);
+  position: absolute;
+  top: -2px;
+  left: 0px;
+}
+.checkbox .checkmark:after {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: url("../assets/icons/check.png");
+  visibility: hidden;
+}
+.checkbox.checked .checkmark {
+  border-width: 2px;
+  border-color: #0880AE;
+}
+.checkbox.checked .checkmark:after {
+  visibility: visible;
+}
+
+.select {
+  position: relative;
+  width: 100%;
+  z-index: 1000;
+}
+.select .select__trigger {
+  width: 100%;
+  color: #7C9CBF;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+.select .select__trigger::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  background-image: url("../assets/icons/chevron-bottom.png");
+}
+.select .select__trigger:focus {
+  outline: none;
+}
+.select .select__dropdown {
+  display: none;
+  background-color: #fff;
+  color: #756F86;
+  margin-top: 4px;
+  position: absolute;
+  top: 100%;
+  right: 0px;
+  left: 0px;
+  border: 1px solid #DBE2EA;
+  border-radius: 6px;
+  box-shadow: 0px 4px 8px rgba(44, 39, 56, 0.04), 0px 20px 20px rgba(44, 39, 56, 0.04);
+}
+.select .select__dropdown .select__dropdown__list {
+  margin: 0;
+  padding: 5px 0px;
+  list-style: none;
+}
+.select .select__dropdown .select__dropdown__item {
+  padding: 10px 15px;
+}
+.select .select__dropdown .select__dropdown__item.selected {
+  background-color: #e1f5fe;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.select .select__dropdown .select__dropdown__item.selected::after {
+  content: "";
+  width: 0.75rem;
+  height: 0.75rem;
+  color: #0277bd;
+  background-size: cover;
+}
+.select .select__dropdown .select__dropdown__item:hover {
+  background-color: #EBF4F8;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+.select.select_show .select__trigger {
+  color: inherit;
+  border-width: 2px;
+  border-color: #0880AE;
+  box-shadow: 0px 4px 8px rgba(44, 39, 56, 0.04);
+}
+.select.select_show .select__trigger::after {
+  transform: rotate(180deg);
+}
+.select.select_show .select__dropdown {
+  display: block;
+}
+.select:focus {
+  color: #2C2738;
+}
+
+.sign-up {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sign-up .sign-up-form {
+  width: 100%;
+  max-width: 460px;
+  background: #fff;
+  color: #756F86;
+  padding: 30px 30px 10px;
+  box-shadow: 0px 12px 24px rgba(44, 39, 56, 0.02), 0px 32px 64px rgba(44, 39, 56, 0.04);
+  border-radius: 24px;
+}
+.sign-up .sign-up-form .sign-up-form-head {
+  color: #2C2738;
+  margin-bottom: 30px;
+}
+.sign-up .sign-up-form .sign-up-form-head h1 {
+  color: inherit;
+  margin-bottom: 5px;
+}
+.sign-up .sign-up-form .form-group {
+  margin-bottom: 30px;
+}
+.sign-up .sign-up-form .form-group label {
+  display: block;
+  font-family: "IBMPlexSans-Medium";
+  line-height: 21px;
+  margin-bottom: 5px;
+}
+.sign-up .sign-up-form .form-group .invalid {
+  margin-top: 10px;
+}
+.sign-up .sign-up-form .btn-default {
+  height: 56px;
+  font-family: "IBMPlexSans-Medium";
+  font-size: 16px;
+}
+
+.invalid {
+  display: block;
+  font-size: 14px;
+  color: #FF7171;
+  line-height: 18px;
+  transition: all 0.3s;
+}
+
+@media only screen and (max-width: 1400px) {
+  body {
+    font-size: 15px;
+  }
+
+  input[type=text], input[type=password], input[type=email], input[type=number] {
+    height: 46px;
+  }
+
+  .select .select__trigger {
+    height: 46px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .sign-up .sign-up-form {
+    padding: 25px 25px 10px;
+  }
+  .sign-up .sign-up-form .sign-up-form-head {
+    margin-bottom: 20px;
+  }
+  .sign-up .sign-up-form .btn-default {
+    height: 42px;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  body {
+    font-size: 14px;
+  }
+
+  input[type=text], input[type=password], input[type=email], input[type=number] {
+    height: 38px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .sign-up .sign-up-form {
+    max-width: 420px;
+    margin: 20px auto;
+    padding: 25px;
+  }
+  .sign-up .sign-up-form .form-group {
+    margin-bottom: 20px;
+  }
+  .sign-up .sign-up-form .btn-default {
+    font-size: 14px;
+    margin-top: 15px;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .checkbox input {
+    margin-right: 2px;
+  }
+  .checkbox .checkmark {
+    width: 24px;
+    height: 24px;
+    top: 0;
+  }
+  .checkbox .checkmark:after {
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+  }
+}
+@media only screen and (max-width: 640px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  .sign-up .sign-up-form {
+    max-width: 360px;
+  }
+  .sign-up .sign-up-form .sign-up-form-head h1 {
+    margin-bottom: 10px;
+  }
+}
+@media only screen and (max-width: 390px) {
+  .sign-up .sign-up-form {
+    max-width: 320px;
+  }
+  .sign-up .sign-up-form .btn-default {
+    height: 40px;
+    font-size: inherit;
+  }
+
+  .select .select__dropdown .select__dropdown__item {
+    padding: 8px 15px;
+    border-bottom: 1px solid #f6f6f6;
+  }
+
+  .input-default, .select .select__trigger, input[type=text], input[type=password], input[type=email], input[type=number] {
+    height: 40px;
+  }
+
+  .checkbox input {
+    margin-right: 0px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

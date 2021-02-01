@@ -1,0 +1,372 @@
+$white-color: #fff
+$primary-color: #000
+$blue: #0880AE
+$font-family-medium: 'IBMPlexSans-Medium'
+
+//Миксины
+=border-radius($radius)
+  -webkit-border-radius: $radius
+  -moz-border-radius:    $radius
+  -ms-border-radius:     $radius
+  border-radius:         $radius
+
+=placeholder
+  &::-webkit-input-placeholder
+    @content
+  &:-moz-placeholder
+    @content
+  &::-moz-placeholder
+    @content
+  &:-ms-input-placeholder
+    @content
+
+@mixin clearfix
+  &:before,
+  &:after
+    content: ""
+    display: table
+  &:after
+    clear: both
+
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null)
+  position: $position
+  top: $top
+  right: $right
+  bottom: $bottom
+  left: $left
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+html
+  scroll-behavior: smooth
+
+a
+  color: $blue
+  text-decoration: none
+  &:hover
+    color: #064e6b
+    transition: color .3s
+
+body
+  min-width: 360px
+  background-color: #E5E5E5
+  font-family: 'IBMPlexSans'
+  font-size: 16px
+  color: $primary-color
+  font-weight: 400
+  line-height: 1.4
+
+.container
+  max-width: 1170px
+  margin: 0 auto
+
+//headlines
+h1, h2, h3
+  font-family: 'IBMPlexSans-Bold'
+  font-weight: 700
+h1
+  font-size: 34px
+h2
+  font-size: 30px
+h3
+  font-size: 26px
+
+//input theme
+.input-default
+  height: 52px
+  background: $white-color
+  color: #2C2738
+  padding: 2px 15px
+  border: 1px solid #DBE2EA
+  border-radius: 6px
+  box-shadow: 0px 4px 8px rgba(44, 39, 56, 0.04)
+  &:focus
+    border-width: 2px
+    border-color: #0880AE
+    box-shadow: 0px 4px 8px rgba(44, 39, 56, 0.04)
+    outline: 0
+    transition: all .2s
+  &.form-control
+    width: 100%
+input
+  &[type='text'], &[type='password'], &[type='email'], &[type='number']
+    @extend .input-default
+    &::placeholder
+      color: #7C9CBF
+  &[type='number']
+    -moz-appearance: textfield
+    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button
+      -webkit-appearance: none
+      margin: 0
+
+
+//button theme
+.btn
+  padding: 10px 15px
+  box-shadow: 0px 2px 4px rgba(44, 39, 56, 0.8)
+  border-width: 0px
+  border-radius: 6px
+  outline: 0
+  cursor: pointer
+  &.btn-default
+    background: #0880ae
+    color: #EBF4F8
+    &:hover, &:focus
+      background: #0e6c91
+      transition: background .5s
+  &.full
+    width: 100%
+  &:disabled
+    background: #DBE2EA
+    color: #B1B5BF
+    box-shadow: 0px 2px 4px rgba(44, 39, 56, 0.08), 0px 4px 8px rgba(44, 39, 56, 0.08)
+    cursor: not-allowed
+    &:hover
+      background: #DBE2EA
+      cursor: not-allowed
+
+//checkbox
+.checkbox
+  position: relative
+  align-items: center
+  cursor: pointer
+  input
+    width: 28px
+    height: 28px
+    margin-right: 10px
+    visibility: hidden
+    vertical-align: middle
+  .checkmark
+    width: 28px
+    height: 28px
+    display: inherit
+    border: 1px solid #DBE2EA
+    border-radius: 4px
+    box-shadow: 0px 4px 8px rgba(44, 39, 56, 0.04)
+    @include position(absolute, $top: -2px, $left: 0px)
+    &:after
+      content: ''
+      display: block
+      width: 24px
+      height: 24px
+      background: url('../assets/icons/check.png')
+      visibility: hidden
+  &.checked
+    .checkmark
+      border-width: 2px
+      border-color: #0880AE
+      &:after
+        visibility: visible
+
+//select
+.select
+  position: relative
+  width: 100%
+  z-index: 1000
+  .select__trigger
+    width: 100%
+    color: #7C9CBF
+    line-height: 1.4
+    display: flex
+    align-items: center
+    justify-content: space-between
+    cursor: pointer
+    user-select: none
+    @extend .input-default
+    &::after
+      content: ''
+      width: 30px
+      height: 30px
+      background-size: cover
+      background-image: url('../assets/icons/chevron-bottom.png')
+    &:focus
+      outline: none
+  .select__dropdown
+    display: none
+    background-color: $white-color
+    color: #756F86
+    margin-top: 4px
+    @include position(absolute, $top: 100%, $left: 0px, $right: 0px)
+    border: 1px solid #DBE2EA
+    border-radius: 6px
+    box-shadow: 0px 4px 8px rgba(44, 39, 56, 0.04), 0px 20px 20px rgba(44, 39, 56, 0.04)
+    .select__dropdown__list
+      margin: 0
+      padding: 5px 0px
+      list-style: none
+    .select__dropdown__item
+      padding: 10px 15px
+      &.selected
+        background-color: #e1f5fe
+        display: flex
+        align-items: center
+        justify-content: space-between
+        &::after
+          content: ''
+          width: 0.75rem
+          height: 0.75rem
+          color: #0277bd
+          background-size: cover
+      &:hover
+        background-color: #EBF4F8
+        cursor: pointer
+        transition: background-color .2s ease-in-out
+  &.select_show
+    .select__trigger
+      color: inherit
+      border-width: 2px
+      border-color: #0880AE
+      box-shadow: 0px 4px 8px rgba(44, 39, 56, 0.04)
+      &::after
+        transform: rotate(180deg)
+    .select__dropdown
+      display: block
+  &:focus
+    color: #2C2738
+
+//register
+.sign-up
+  min-height: 100vh
+  display: flex
+  align-items: center
+  justify-content: center
+  .sign-up-form
+    width: 100%
+    max-width: 460px
+    background: $white-color
+    color: #756F86
+    padding: 30px 30px 10px
+    box-shadow: 0px 12px 24px rgba(44, 39, 56, 0.02), 0px 32px 64px rgba(44, 39, 56, 0.04)
+    border-radius: 24px
+    .sign-up-form-head
+      color: #2C2738
+      margin-bottom: 30px
+      h1
+        color: inherit
+        margin-bottom: 5px
+    .form-group
+      margin-bottom: 30px
+      label
+        display: block
+        font-family: $font-family-medium
+        line-height: 21px
+        margin-bottom: 5px
+      .invalid
+        margin-top: 10px
+    .btn-default
+      height: 56px
+      font-family: $font-family-medium
+      font-size: 16px
+
+//error
+.invalid
+  display: block
+  font-size: 14px
+  color: #FF7171
+  line-height: 18px
+  transition: all .3s
+
+@media only screen and (max-width: 1400px)
+  body
+    font-size: 15px
+
+  //input styles
+  input
+    &[type='text'], &[type='password'], &[type='email'], &[type='number']
+      height: 46px
+
+  .select
+    .select__trigger
+      height: 46px
+
+  //headlines
+  h1
+    font-size: 30px
+
+  //sign-up
+  .sign-up
+    .sign-up-form
+      padding: 25px 25px 10px
+      .sign-up-form-head
+        margin-bottom: 20px
+      .btn-default
+        height: 42px
+
+@media only screen and (max-width: 1024px)
+  body
+    font-size: 14px
+
+  //input styles
+  input
+    &[type='text'], &[type='password'], &[type='email'], &[type='number']
+      height: 38px
+
+  //headlines
+  h1
+    font-size: 28px
+
+  //sign-up
+  .sign-up
+    .sign-up-form
+      max-width: 420px
+      margin: 20px auto
+      padding: 25px
+      .form-group
+        margin-bottom: 20px
+      .btn-default
+        font-size: 14px
+        margin-top: 15px
+
+@media only screen and (max-width: 800px)
+  .checkbox
+    input
+      margin-right: 2px
+    .checkmark
+      width: 24px
+      height: 24px
+      top: 0
+      &:after
+        width: 20px
+        height: 20px
+        background-size: cover
+
+@media only screen and (max-width: 640px)
+  //headlines
+  h1
+    font-size: 24px
+
+  //sign-up
+  .sign-up
+    .sign-up-form
+      max-width: 360px
+      .sign-up-form-head
+        h1
+          margin-bottom: 10px
+
+@media only screen and (max-width: 390px)
+  //sign-up
+  .sign-up
+    .sign-up-form
+      max-width: 320px
+      .btn-default
+        height: 40px
+        font-size: inherit
+
+  //select styles
+  .select
+    .select__dropdown
+      .select__dropdown__item
+        padding: 8px 15px
+        border-bottom: 1px solid #f6f6f6
+
+  //input, select styles
+  .input-default, .select .select__trigger, input[type=text], input[type=password], input[type=email], input[type=number]
+    height: 40px
+
+  //checkbox
+  .checkbox
+    input
+      margin-right: 0px
